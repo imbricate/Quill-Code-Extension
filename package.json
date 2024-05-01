@@ -41,7 +41,6 @@
     "package": "yarn clean && vsce package --no-yarn",
     "publish": "yarn clean && vsce publish --no-yarn"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/mocha": "^10",
     "@types/node": "20",
