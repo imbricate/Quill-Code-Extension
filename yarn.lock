@@ -215,6 +215,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@google/generative-ai@npm:0.9.0":
+  version: 0.9.0
+  resolution: "@google/generative-ai@npm:0.9.0"
+  checksum: 10c0/423a80657b4203dc6f34ce715c74162ffcee274ed0c71af0ffbb241b939be683d5616fea98b6e3a148d49baec7305e8d9580bc50ed63f7d273610f4d023c9ec4
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -369,7 +376,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20":
+"@types/node@npm:^20":
   version: 20.12.7
   resolution: "@types/node@npm:20.12.7"
   dependencies:
@@ -1576,8 +1583,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "imbricate-quill@workspace:."
   dependencies:
+    "@google/generative-ai": "npm:0.9.0"
     "@types/mocha": "npm:^10"
-    "@types/node": "npm:20"
+    "@types/node": "npm:^20"
     "@types/vscode": "npm:^1"
     "@typescript-eslint/eslint-plugin": "npm:^7"
     "@typescript-eslint/parser": "npm:^7"
