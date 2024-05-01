@@ -5,6 +5,7 @@
  */
 
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
+import { CONFIG_KEY, getConfiguration } from "../configuration/get-config";
 import { IQuillLanguageService } from "./service";
 
 export class GoogleLanguageService implements IQuillLanguageService {
@@ -31,9 +32,11 @@ export class GoogleLanguageService implements IQuillLanguageService {
         prompt: string,
     ): Promise<string> {
 
+        const modelName = getConfiguration(CONFIG_KEY.GOOGLE_MODEL);
+
         const ai = new GoogleGenerativeAI(this._apiKey);
         const model = ai.getGenerativeModel({
-            model: "gemini-1.5-pro",
+            model: modelName,
         });
 
         const generationConfig = {

@@ -65,6 +65,11 @@
         "imbricateQuill.apiKey.google": {
           "type": "string",
           "description": "Google generative language API Key for Imbricate Quill"
+        },
+        "imbricateQuill.model.google": {
+          "type": "string",
+          "default": "gemini-1.0-pro",
+          "description": "Google generative language model for Imbricate Quill"
         }
       }
     }
