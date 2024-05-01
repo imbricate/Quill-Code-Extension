@@ -15,14 +15,29 @@ export const registerExecutePromptCommand = (): vscode.Disposable => {
     const disposable = vscode.commands.registerCommand(ExecutePromptCommand, async (
         languageService: IQuillLanguageService,
         prompt: IQuillPrompt,
-        inputText: string,
+        range: vscode.Range,
     ) => {
 
+        const editor: vscode.TextEditor | undefined =
+            vscode.window.activeTextEditor;
+
+        if (!editor) {
+            return;
+        }
+
+        const document: vscode.TextDocument = editor.document;
+
+        const inputText: string = document.getText(range);
         const promptText: string = prompt.getPrompt(inputText);
 
         const output: string = await languageService.executePrompt(promptText);
 
-        console.log(output);
+        console.log(inputText, output);
+
+        editor.edit((builder: vscode.TextEditorEdit) => {
+
+            builder.replace(range, output);
+        });
     });
 
     return disposable;

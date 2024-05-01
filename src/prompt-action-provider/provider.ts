@@ -50,8 +50,7 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
         }
 
         const actions: vscode.CodeAction[] = [
-            this._createQuickFixAction(
-                document,
+            this._createPromptAction(
                 range,
                 this._languageServices[0],
                 this._prompts[0],
@@ -61,8 +60,7 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
         return actions;
     }
 
-    private _createQuickFixAction(
-        document: vscode.TextDocument,
+    private _createPromptAction(
         range: vscode.Range,
         languageService: IQuillLanguageService,
         prompt: IQuillPrompt,
@@ -70,7 +68,7 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
 
         const action = new vscode.CodeAction(
             `${prompt.actionName} (${languageService.serviceName})`,
-            vscode.CodeActionKind.QuickFix,
+            vscode.CodeActionKind.RefactorRewrite,
         );
 
         action.isPreferred = true;
@@ -81,7 +79,7 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
             arguments: [
                 languageService,
                 prompt,
-                document.getText(range),
+                range,
             ],
         };
 
