@@ -49,13 +49,24 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
             return;
         }
 
-        const actions: vscode.CodeAction[] = [
-            this._createPromptAction(
-                range,
-                this._languageServices[0],
-                this._prompts[0],
-            ),
-        ];
+        const actions: vscode.CodeAction[] = [];
+
+        for (const languageService of this._languageServices) {
+
+            for (const prompt of this._prompts) {
+
+                actions.push(this._createPromptAction(
+                    range,
+                    languageService,
+                    prompt,
+                ));
+                actions.push(this._createPromptRewriteAction(
+                    range,
+                    languageService,
+                    prompt,
+                ));
+            }
+        }
 
         return actions;
     }
@@ -67,7 +78,34 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
     ): vscode.CodeAction {
 
         const action = new vscode.CodeAction(
-            `${prompt.actionName} (${languageService.serviceName})`,
+            `Insert bottom - ${prompt.actionName} (${languageService.serviceName})`,
+            vscode.CodeActionKind.QuickFix,
+        );
+
+        action.isPreferred = true;
+
+        action.command = {
+            command: ExecutePromptCommand,
+            title: "Prompt",
+            arguments: [
+                languageService,
+                prompt,
+                range,
+                false,
+            ],
+        };
+
+        return action;
+    }
+
+    private _createPromptRewriteAction(
+        range: vscode.Range,
+        languageService: IQuillLanguageService,
+        prompt: IQuillPrompt,
+    ): vscode.CodeAction {
+
+        const action = new vscode.CodeAction(
+            `Replace - ${prompt.actionName} (${languageService.serviceName})`,
             vscode.CodeActionKind.RefactorRewrite,
         );
 
@@ -80,6 +118,7 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
                 languageService,
                 prompt,
                 range,
+                true,
             ],
         };
 
