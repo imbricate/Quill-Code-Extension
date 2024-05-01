@@ -1,9 +1,10 @@
 # Change Log
 
-All notable changes to the "imbricate-quill" extension will be documented in this file.
+## 1.0.1
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+- Add Icon for Extension
 
-## [Unreleased]
+## 1.0.0
 
-- Initial release
+- Add Feature for Grammar and Format Improvements
+- Add Google language service Source
