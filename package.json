@@ -1,7 +1,8 @@
 {
   "name": "imbricate-quill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Imbricate Quill",
+  "icon": "images/quill.png",
   "author": "WMXPY",
   "license": "MIT",
   "private": true,
