@@ -33,7 +33,7 @@ export class GoogleLanguageService implements IQuillLanguageService {
 
         const ai = new GoogleGenerativeAI(this._apiKey);
         const model = ai.getGenerativeModel({
-            model: "",
+            model: "gemini-1.5-pro",
         });
 
         const generationConfig = {
@@ -70,8 +70,6 @@ export class GoogleLanguageService implements IQuillLanguageService {
 
         const result = await chat.sendMessage(prompt);
         const response = result.response;
-
-        console.log(response.text());
 
         return response.text();
     }

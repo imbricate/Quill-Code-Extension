@@ -5,7 +5,9 @@
  */
 
 import * as vscode from "vscode";
+import { ExecutePromptCommand } from "../commands/execute-prompt";
 import { IQuillLanguageService } from "../language-service/service";
+import { IQuillPrompt } from "../prompt/prompt";
 import { calculateSelectedSize } from "../util/select-size";
 
 export class PromptActionProvider implements vscode.CodeActionProvider {
@@ -16,18 +18,22 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
 
     public static create(
         languageServices: IQuillLanguageService[],
+        prompts: IQuillPrompt[],
     ): PromptActionProvider {
 
-        return new PromptActionProvider(languageServices);
+        return new PromptActionProvider(languageServices, prompts);
     }
 
     private readonly _languageServices: IQuillLanguageService[];
+    private readonly _prompts: IQuillPrompt[];
 
     private constructor(
         languageServices: IQuillLanguageService[],
+        prompts: IQuillPrompt[],
     ) {
 
         this._languageServices = languageServices;
+        this._prompts = prompts;
     }
 
     public provideCodeActions(
@@ -44,7 +50,12 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
         }
 
         const actions: vscode.CodeAction[] = [
-            this._createQuickFixAction(document, range),
+            this._createQuickFixAction(
+                document,
+                range,
+                this._languageServices[0],
+                this._prompts[0],
+            ),
         ];
 
         return actions;
@@ -53,20 +64,26 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
     private _createQuickFixAction(
         document: vscode.TextDocument,
         range: vscode.Range,
+        languageService: IQuillLanguageService,
+        prompt: IQuillPrompt,
     ): vscode.CodeAction {
 
         const action = new vscode.CodeAction(
-            "Imbricate Quill",
+            `${prompt.actionName} (${languageService.serviceName})`,
             vscode.CodeActionKind.QuickFix,
         );
 
         action.isPreferred = true;
-        action.edit = new vscode.WorkspaceEdit();
-        action.edit.replace(
-            document.uri,
-            range,
-            "1234567890",
-        );
+
+        action.command = {
+            command: ExecutePromptCommand,
+            title: "Prompt",
+            arguments: [
+                languageService,
+                prompt,
+                document.getText(range),
+            ],
+        };
 
         return action;
     }

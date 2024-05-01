@@ -4,13 +4,26 @@
  * @description Grammar and Format
  */
 
-export const createGrammarAndFormatPrompt = (
-    originalText: string,
-): string => {
+import { IQuillPrompt } from "./prompt";
 
-    return [
-        "Response only with markdown result without any other text.",
-        "Improve grammar and format to the following format. To make them more readable, and easier to understand.",
-        originalText,
-    ].join("\n");
-};
+export class GrammarAndFormatPrompt implements IQuillPrompt {
+
+    public static create(): GrammarAndFormatPrompt {
+
+        return new GrammarAndFormatPrompt();
+    }
+
+    public readonly actionName: string = "Grammar and Format";
+
+    private constructor() {
+    }
+
+    public getPrompt(inputText: string) {
+
+        return [
+            "Response only with markdown result without any other text.",
+            "Improve grammar and format to the following format. To make them more readable, and easier to understand.",
+            inputText,
+        ].join("\n");
+    }
+}
