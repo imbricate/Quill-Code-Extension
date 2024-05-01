@@ -6,7 +6,9 @@
 
 export interface IQuillLanguageService {
 
+    readonly serviceName: string;
+
     executePrompt(
         prompt: string,
-    ): string;
+    ): Promise<string>;
 }

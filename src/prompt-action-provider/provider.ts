@@ -5,6 +5,7 @@
  */
 
 import * as vscode from "vscode";
+import { IQuillLanguageService } from "../language-service/service";
 import { calculateSelectedSize } from "../util/select-size";
 
 export class PromptActionProvider implements vscode.CodeActionProvider {
@@ -13,13 +14,20 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
         vscode.CodeActionKind.QuickFix,
     ];
 
-    public static create(): PromptActionProvider {
+    public static create(
+        languageServices: IQuillLanguageService[],
+    ): PromptActionProvider {
 
-        return new PromptActionProvider();
+        return new PromptActionProvider(languageServices);
     }
 
-    private constructor() {
+    private readonly _languageServices: IQuillLanguageService[];
 
+    private constructor(
+        languageServices: IQuillLanguageService[],
+    ) {
+
+        this._languageServices = languageServices;
     }
 
     public provideCodeActions(
