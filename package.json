@@ -1,0 +1,58 @@
+{
+  "name": "imbricate-quill",
+  "version": "1.0.0",
+  "displayName": "Imbricate Quill",
+  "author": "WMXPY",
+  "license": "MIT",
+  "private": true,
+  "publisher": "imbricate",
+  "description": "Writing with AI.",
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Imbricate/Quill-Code-Extension/issues"
+  },
+  "homepage": "https://quill.imbricate.io",
+  "categories": [
+    "Notebooks"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Imbricate/Quill-Code-Extension.git"
+  },
+  "keywords": [
+    "imbricate",
+    "note"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test",
+    "clean": "rm -rf out",
+    "package": "yarn clean && vsce package --no-yarn",
+    "publish": "yarn clean && vsce publish --no-yarn"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^10",
+    "@types/node": "20",
+    "@types/vscode": "^1",
+    "@typescript-eslint/eslint-plugin": "^7",
+    "@typescript-eslint/parser": "^7",
+    "@vscode/test-cli": "^0",
+    "@vscode/test-electron": "^2",
+    "esbuild": "^0",
+    "eslint": "^8",
+    "typescript": "^5"
+  },
+  "contributes": {}
+}
