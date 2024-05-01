@@ -51,11 +51,13 @@ export class PromptActionProvider implements vscode.CodeActionProvider {
             "Imbricate Quill",
             vscode.CodeActionKind.QuickFix,
         );
+
+        action.isPreferred = true;
         action.edit = new vscode.WorkspaceEdit();
         action.edit.replace(
             document.uri,
             range,
-            "Imbricate Quill",
+            "1234567890",
         );
 
         return action;
