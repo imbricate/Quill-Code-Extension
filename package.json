@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "publisher": "imbricate",
-  "description": "Writing with AI.",
+  "description": "Writing with AI",
   "engines": {
     "vscode": "^1.76.0"
   },
@@ -25,7 +25,9 @@
     "imbricate",
     "note"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
   "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",
@@ -52,6 +54,5 @@
     "esbuild": "^0",
     "eslint": "^8",
     "typescript": "^5"
-  },
-  "contributes": {}
+  }
 }
