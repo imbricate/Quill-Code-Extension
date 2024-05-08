@@ -8,9 +8,9 @@
 └─────────┘
 ```
 
-Imbricate Quill Code Extension
-
 [![VSCode Marketplace Version](https://vsmarketplacebadges.dev/version/imbricate.imbricate-quill.svg)](https://marketplace.visualstudio.com/items?itemName=imbricate.imbricate-quill)
+
+Imbricate Quill Code Extension
 
 ## Documentation
 
