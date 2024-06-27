@@ -215,10 +215,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@google/generative-ai@npm:0.13.0":
-  version: 0.13.0
-  resolution: "@google/generative-ai@npm:0.13.0"
-  checksum: 10c0/5b20d485cc6e45e141edeacb0461b58acb7a54db7c170ed672556495d60eba4682f0dba0811a4bd6d4c3f3057fa489e5d1d62c2a2685a9dc3dc8aa270946ec52
+"@google/generative-ai@npm:0.14.0":
+  version: 0.14.0
+  resolution: "@google/generative-ai@npm:0.14.0"
+  checksum: 10c0/2ec2009483fc82e6cbdb5608153dff09fe38b2987821671344f5d6a2975f5c3d1688ed1349c383341a4527fe816620197c1e4f53f64c289ec1f019013777c331
   languageName: node
   linkType: hard
 
@@ -1593,7 +1593,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "imbricate-quill@workspace:."
   dependencies:
-    "@google/generative-ai": "npm:0.13.0"
+    "@google/generative-ai": "npm:0.14.0"
     "@types/mocha": "npm:^10.0.6"
     "@types/node": "npm:^20.14.9"
     "@types/vscode": "npm:^1.76.0"

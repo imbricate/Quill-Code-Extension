@@ -42,7 +42,7 @@
     "publish": "yarn clean && vsce publish --no-yarn --no-dependencies"
   },
   "dependencies": {
-    "@google/generative-ai": "0.13.0"
+    "@google/generative-ai": "0.14.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
